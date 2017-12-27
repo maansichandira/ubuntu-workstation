@@ -1,0 +1,13 @@
+TARGETS = nmbd resolvconf unattended-upgrades samba-ad-dc uuidd thermald kerneloops speech-dispatcher clamav-freshclam winbind irqbalance alsa-utils whoopsie ufw ntp lightdm docker bluetooth cups-browsed saned smbd plymouth urandom cgroupfs-mount avahi-daemon cups sendsigs rsyslog umountnfs.sh hwclock.sh networking umountfs umountroot halt reboot
+cgroupfs-mount: docker
+avahi-daemon: cups-browsed saned
+cups: smbd
+sendsigs: cgroupfs-mount thermald kerneloops unattended-upgrades samba-ad-dc speech-dispatcher lightdm docker bluetooth uuidd clamav-freshclam smbd plymouth nmbd winbind avahi-daemon irqbalance cups-browsed alsa-utils
+rsyslog: cgroupfs-mount thermald kerneloops speech-dispatcher docker bluetooth clamav-freshclam sendsigs winbind avahi-daemon irqbalance cups-browsed whoopsie saned ntp cups
+umountnfs.sh: cgroupfs-mount thermald kerneloops unattended-upgrades samba-ad-dc speech-dispatcher lightdm sendsigs docker bluetooth uuidd clamav-freshclam smbd plymouth rsyslog nmbd winbind avahi-daemon irqbalance cups-browsed alsa-utils
+hwclock.sh: kerneloops uuidd rsyslog cups-browsed
+networking: kerneloops samba-ad-dc lightdm umountnfs.sh smbd nmbd winbind cups-browsed
+umountfs: cgroupfs-mount thermald hwclock.sh kerneloops unattended-upgrades samba-ad-dc speech-dispatcher lightdm umountnfs.sh docker networking bluetooth uuidd clamav-freshclam smbd plymouth nmbd resolvconf urandom winbind avahi-daemon irqbalance cups-browsed alsa-utils
+umountroot: umountfs
+halt: umountroot
+reboot: umountroot

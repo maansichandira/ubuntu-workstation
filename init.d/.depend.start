@@ -1,0 +1,31 @@
+TARGETS = rsyslog unattended-upgrades samba-ad-dc uuidd killprocs apport cgroupfs-mount thermald kerneloops speech-dispatcher dbus clamav-freshclam winbind irqbalance whoopsie single ntp sysstat anacron acpid rsync ssh lightdm docker bluetooth avahi-daemon cron cups cups-browsed saned smbd plymouth rc.local ondemand grub-common
+INTERACTIVE =
+cgroupfs-mount: rsyslog
+thermald: rsyslog
+kerneloops: rsyslog
+speech-dispatcher: rsyslog
+dbus: rsyslog
+clamav-freshclam: rsyslog
+winbind: rsyslog
+irqbalance: rsyslog
+whoopsie: rsyslog
+single: killprocs
+ntp: rsyslog
+sysstat: rsyslog
+anacron: rsyslog
+acpid: rsyslog
+rsync: rsyslog
+ssh: rsyslog
+lightdm: dbus acpid
+docker: rsyslog cgroupfs-mount
+bluetooth: rsyslog dbus
+avahi-daemon: dbus rsyslog
+cron: rsyslog winbind
+cups: rsyslog
+cups-browsed: rsyslog
+saned: rsyslog dbus
+smbd: cups
+plymouth: cgroupfs-mount rsyslog thermald kerneloops unattended-upgrades samba-ad-dc speech-dispatcher lightdm dbus docker bluetooth uuidd clamav-freshclam smbd cups winbind avahi-daemon irqbalance cups-browsed whoopsie saned ntp sysstat anacron acpid rsync apport ssh cron
+rc.local: cgroupfs-mount rsyslog thermald kerneloops unattended-upgrades samba-ad-dc speech-dispatcher lightdm dbus docker bluetooth uuidd clamav-freshclam smbd cups winbind avahi-daemon irqbalance cups-browsed whoopsie saned ntp sysstat anacron acpid rsync apport ssh cron
+ondemand: cgroupfs-mount rsyslog thermald kerneloops unattended-upgrades samba-ad-dc speech-dispatcher lightdm dbus docker bluetooth uuidd clamav-freshclam smbd cups winbind avahi-daemon irqbalance cups-browsed whoopsie saned ntp sysstat anacron acpid rsync apport ssh cron
+grub-common: cgroupfs-mount rsyslog thermald kerneloops unattended-upgrades samba-ad-dc speech-dispatcher lightdm dbus docker bluetooth uuidd clamav-freshclam smbd cups winbind avahi-daemon irqbalance cups-browsed whoopsie saned ntp sysstat anacron acpid rsync apport ssh cron
